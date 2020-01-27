@@ -45,7 +45,7 @@ None
 
 ## SUB-VARIATIONS
  1. Countries ordered by population given continent.
- 2. Countries ordered by population giben region.
+ 2. Countries ordered by population given region.
 
 ## SCHEDULE
 
