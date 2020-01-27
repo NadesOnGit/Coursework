@@ -1,6 +1,6 @@
 As a surveyor I want a report on all the countries in the world organised by descending population
-As a surveyor I want a report on all the countries in the world organised by descending population per continent
-As a surveyor I want a report on all the countries in the world organised by descending population per region
+As a surveyor I want a report on all the countries in the world organised by descending population in a continent given by the user
+As a surveyor I want a report on all the countries in the world organised by descending population in a region given be the user
 As a surveyor I want a report on the most populous countries with amount given by the user
 As a surveyor I want a report on the most populous countries per continent with amount given by the user
 As a surveyor I want a report on the most populous countries per region with the amount given by the user
@@ -36,3 +36,5 @@ As a surveyor I want the city report to contain its name, its country its distri
 As a surveyor I want the capital city report to contain its Name its country and its population
 As a surveyor I want the population report to contain the name of the continent/region/country
 And the total population of the continent/region/country and the total population of the continent/region/country living in cities and the total population of the continent/region/country not living in cities
+
+
