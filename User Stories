@@ -1,0 +1,39 @@
+As a surveyor I want a report on all the countries in the world organised by descending population
+As a surveyor I want a report on all the countries in the world organised by descending population per continent
+As a surveyor I want a report on all the countries in the world organised by descending population per region
+As a surveyor I want a report on the most populous countries with amount given by the user
+As a surveyor I want a report on the most populous countries per continent with amount given by the user
+As a surveyor I want a report on the most populous countries per region with the amount given by the user
+As a surveyor I want a report on all the cities in the world organised by descending population
+As a surveyor I want a report on all the cities in a specific continent organised by descending population
+As a surveyor I want a report on all the cities in a specific region organised by descending 
+As a surveyor I want a report on all the cities in a specific country organised by descending population 
+As a surveyor I want a report on all the cities in a specific district organised by descending population
+As a surveyor I want a report on a 
+As a surveyor I want a report on the most populous cities with amount given by the user
+As a surveyor I want a report on the most populous cities per continent with amount given by the user
+As a surveyor I want a report on the most populous cities per region with the amount given by the user
+As a surveyor I want a report on the most populous cities per country with the amount given by the user
+As a surveyor I want a report on the most populous cities per district with the amount given by the user
+As a surveyor I want a repot on the most populous capital cities in the world with the amount given by the user
+As a surveyor I want a report on the most populous capital cities in a continent with the amount given by the user 
+As a surveyor I want a report on the most populous capital cities in a region with the amount given by the user
+As a surveyor I want a report on the total population of people the total population of people living in cities and the total population of people not living in cities in each continent
+As a surveyor I want a report on the total population of people the total population of people living in cities and the total population of people not living in cities in each region
+As a surveyor I want a report on the total population of people the total population of people living in cities and the total population of people not living in cities in each country
+As a surveyor I want to be able to access the population of the world
+As a surveyor I want to be able to access the population of a specific continent
+As a surveyor I want to be able to access the population of a specific region
+As a surveyor I want to be able to access the population of a specific country 
+As a surveyor I want to be able to access the population of a specific district
+As a surveyor I want to be able to access the population of a specific city
+As a surveyor I want to be able to access the percentage of people in the world that speaks Chinese
+As a surveyor I want to be able to access the percentage of people in the world that speaks English
+As a surveyor I want to be able to access the percentage of people in the world that speaks Hindi
+As a surveyor I want to be able to access the percentage of people in the world that speaks Spanish
+As a surveyor I want to be able to access the percentage of people in the world that speaks Arabic
+As a surveyor I want the country report to contain a country code, name its continent its region its population and its capital
+As a surveyor I want the city report to contain its name, its country its district and its population
+As a surveyor I want the capital city report to contain its Name its country and its population
+As a surveyor I want the population report to contain the name of the continent/region/country
+And the total population of the continent/region/country and the total population of the continent/region/country living in cities and the total population of the continent/region/country not living in cities
