@@ -9,7 +9,6 @@ As a surveyor I want a report on all the cities in a specific continent organise
 As a surveyor I want a report on all the cities in a specific region organised by descending 
 As a surveyor I want a report on all the cities in a specific country organised by descending population 
 As a surveyor I want a report on all the cities in a specific district organised by descending population
-As a surveyor I want a report on a 
 As a surveyor I want a report on the most populous cities with amount given by the user
 As a surveyor I want a report on the most populous cities per continent with amount given by the user
 As a surveyor I want a report on the most populous cities per region with the amount given by the user
