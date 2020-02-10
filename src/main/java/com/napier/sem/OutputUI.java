@@ -1,7 +1,6 @@
 package com.napier.sem;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -19,99 +18,77 @@ public class OutputUI {
     private JPanel OutputUIpanel;
     private JTextPane textPane1;
     public int coloumCount;
-
     public OutputUI() {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String finalOutput = "";
+
                 int rowCount;
                 System.out.println("eee");
 
                 List<String> row = new ArrayList<String>();
-        /* COMMENTED OUT
-                File newFile = new File("C:\\Users\\jmast\\Downloads\\Coursework-master\\Coursework-master\\src\\main\\java\\sqlinput.txt");
-                FileReader fileRead = new FileReader("sqlinput.txt"));
-                String line;
-                while (fileRead.readLine() != null) {
-                    line = fileRead.readLine();
-          */
-                String[] line;
-                line = new String[]{"+------------+------------+----------+", "| Population | Percentage | Language |", "+------------+------------+----------+", "| 1191843539 | 20%        | Chinese  |", "|  405633070 | 7%         | Hindi    |"};
+
+                //Insert input here
+                String[] line = {"+------------+------------+----------+", "| Population | Percentage | Language |", "+------------+------------+----------+", "| 1191843539 | 20%        | Chinese  |", "|  405633070 | 7%         | Hindi    |", "|  355029462 | 6%         | Spanish  |", "|  347077867 | 6%         | English  |", "|  233839239 | 4%         | Arabic   |", "+------------+------------+----------+"};
                 for (int i = 0; i < line.length; i++) {
 
                     String[] rowLine = line[i].split("|");
-                    coloumCount = rowLine.length;
                     row.add(line[i]);
 
 
                 }
-                System.out.println("qws");
+
 
                 rowCount = row.size();
-                String coloum = row.get(1);
+                String column = row.get(1);
+                int columnCount = column.split("\\|").length;
                 Object[] lineRow = {row};
+
+                List<String> fixOutput = new ArrayList<>();
                 System.out.println("WWW");
+
+                int o = 0;
                 for (int i = 0; i < row.size(); i++) {
-                    finalOutput += row.get(i) + '\n';
+                    //Removes useless "+-----+-----+" rows
+                    if (!row.get(i).contains("+")) {
+                        fixOutput.add(row.get(i));
+                        o++;
+
+                    }
+
                 }
-                textPane1.setText(finalOutput);
+                //Declares data+row output
+                String[][] rowOutput = new String[o][columnCount];
+                //Variable used to remove blank first row
+                String[][] rowOutputFix = new String[o][columnCount - 1];
+                for (int i = 0; i < fixOutput.size(); i++) {
+                    //Splits Data into separate rows using "|"
+                    rowOutput[i] = fixOutput.get(i).split("\\|");
+                    int u = 0;
+                    //Removes blank first column
+                    for (int v = 1; v < rowOutput[i].length; v++) {
+                        rowOutputFix[i][u] = rowOutput[i][v];
+                        u++;
+                    }
+
+                }
+
+
+                //Creates new table frame
+                JFrame frame = new JFrame();
+                //Insert data into table
+                JTable table = new JTable(rowOutputFix, rowOutputFix[1]);
+                frame.setBounds(30, 40, 200, 300);
+                frame.add(table);
+                frame.setSize(500, 200);
+                frame.setVisible(true);
+
             }
         });
 
     }
 
-    public String[] SQLinput(String[] statement) {
-        try {
 
-            connect();
-            String strSelect = "";
-            for (int i = 0; i < statement.length; i++) {
-                Statement stmt = con.createStatement();
-                strSelect += statement[i];
-
-                ResultSet rset = stmt.executeQuery(statement[i]);
-            }
-        } catch (Exception e) {
-
-        }
-
-        String[] result = {""};
-
-        Connection sqlConnect;
-        return null;
-    }
-
-    public Connection con;
-
-    public void connect() {
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-        } catch (Exception e) {
-            int s = 7;
-        }
-        try {
-            for (int i = 0; i < 12; i++) {
-                Thread.sleep(30000);
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "12345");
-                break;
-            }
-        } catch (Exception e) {
-
-        }
-    }
-
-    public void disconnect() {
-        if (con != null) {
-            try {
-                con.close();
-            } catch (Exception e) {
-
-            }
-        }
-    }
     // Used from github.com/Kevin-Sim/SET08103/blob/master/labs/lab03/README.md | Extracting Connect and Disconnect Functionality
 
 
@@ -121,34 +98,5 @@ public class OutputUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    {
-// GUI initializer generated by IntelliJ IDEA GUI Designer
-// >>> IMPORTANT!! <<<
-// DO NOT EDIT OR ADD ANY CODE HERE!
-        $$$setupUI$$$();
-    }
-
-    /**
-     * Method generated by IntelliJ IDEA GUI Designer
-     * >>> IMPORTANT!! <<<
-     * DO NOT edit this method OR call it in your code!
-     *
-     * @noinspection ALL
-     */
-    private void $$$setupUI$$$() {
-        OutputUIpanel = new JPanel();
-        button1 = new JButton();
-        button1.setText("Button");
-        javapane = new JScrollPane();
-        textPane1 = new JTextPane();
-    }
-
-    /**
-     * @noinspection ALL
-     */
-    public JComponent $$$getRootComponent$$$() {
-        return OutputUIpanel;
     }
 }
