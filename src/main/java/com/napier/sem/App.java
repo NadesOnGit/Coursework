@@ -12,9 +12,9 @@ import java.util.List;
  * Author: Jack Iain Bryce (40400117)
  * Last Date of Modification: 31/01/2020
  */
-public class App
-{
+public class App {
     //Instance Variables.
+    private static QueryHandler queryHandler;
     private static JFrame frame;
     private static int capitalCities, cities, countries;
 
@@ -22,8 +22,10 @@ public class App
      * Purpose: Entry Point of the Program.
      * Parameters: args - This is the arguments from the command line.
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
+        //Initialise the QueryHandler to display the appropriate inputs to the user.
+        queryHandler = new QueryHandler("db/world.sql");
+
         //Initialise the frame and set its parameters.
         frame = new JFrame("Software Engineering Methods Coursework");
         frame.setVisible(true);
@@ -166,13 +168,17 @@ public class App
 
         } else {
             //Query the database to find the continents the user can select from.
-            ArrayList<String> continents = new ArrayList<String>();
+            ArrayList<String> continents = queryHandler.getContinents();
 
             //Since the user selected a query without each in it, we need them to enter a value.
             String input = JOptionPane.showInputDialog(null, "Enter which continent you wish to use: ", "", JOptionPane.QUESTION_MESSAGE, null, continents.toArray(), "").toString();
 
             //Call the query.
+            if (input != "") {
 
+            } else {
+                queryContinent(value);
+            }
         }
     }
 
@@ -186,13 +192,17 @@ public class App
 
         } else {
             //Query the database to find the list of regions.
-            ArrayList<String> regions = new ArrayList<String>();
+            ArrayList<String> regions = queryHandler.getRegions();
 
             //Since the user selected a query without each in it, we need them to enter a value.
             String input = JOptionPane.showInputDialog(null, "Enter which region you wish to use: ", "", JOptionPane.QUESTION_MESSAGE, null, regions.toArray(), "").toString();
 
             //Call the query.
+            if (input != "") {
 
+            } else {
+                queryRegion(value);
+            }
         }
     }
 
@@ -206,13 +216,17 @@ public class App
 
         } else {
             //Query the database to find the list of countries in the world.
-            ArrayList<String> countries = new ArrayList<String>();
+            ArrayList<String> countries = queryHandler.getCountries();
 
             //Since the user selected a query without each in it, we need them to enter a value.
             String input = JOptionPane.showInputDialog(null, "Enter which country you wish to use: ", "", JOptionPane.QUESTION_MESSAGE, null, countries.toArray(), "").toString();
 
             //Call the query.
+            if (input != "") {
 
+            } else {
+                queryCountry(value);
+            }
         }
     }
 
