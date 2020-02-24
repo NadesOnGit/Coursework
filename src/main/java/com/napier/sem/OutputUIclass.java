@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.*;
 /*
             Jack Masterton
  */
@@ -82,25 +83,20 @@ public class OutputUIclass {
         frame.setVisible(true);
     }
 
-    public void tableDouble(ArrayList[] inputData, ArrayList[] inputInfo) {
-        String[][] rowData = tableBuilder(inputData);
-        String[][] infoData = tableBuilder(inputInfo);
+    public void tableDouble(String[][] inputData, String[][] inputInfo) {
+
         //Creates new table frame
 
         JFrame frame = new JFrame();
-        JFrame frame2 = new JFrame();
         //Insert data into table
-        JTable table = new JTable(rowData, rowData[1]);
-        JTable infoTable = new JTable(infoData, infoData[1]);
+        JTable table = new JTable(inputData, inputData[1]);
+        JTable table2 = new JTable(inputInfo, inputInfo[1]);
         //define size of table
-        frame.setBounds(30, 40, rowData[1].length * 70, inputData[1].size() * 8);
-        frame2.setBounds(30, 40 + rowData[1].length * 70, infoData[1].length * 70, inputInfo[1].size() * 36);
-        frame.add(table);
-        frame2.add(infoTable);
-        frame.setSize(rowData[1].length * 100, inputData[1].size() * 5);
-        frame2.setSize(infoData[1].length * 100, inputInfo[1].size() * 3);
+        frame.setBounds(30, 40, inputData[1].length * 70, inputData[1].length * 36);
+        frame.add(table, BorderLayout.NORTH);
+        frame.add(table2, BorderLayout.SOUTH);
+        frame.setSize(inputData.length * 100, inputData[1].length * 18);
         frame.setVisible(true);
-        frame2.setVisible(true);
     }
 
 
