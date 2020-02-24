@@ -721,7 +721,7 @@ public class QueryHandler {
     }
 
     /*All the capital cities in the world organised by largest population to smallest. */
-    public ArrayList<Capital> worldCapitalCityPop()
+    public ArrayList<City> worldCapitalCityPop()
     {
         try
         {
@@ -736,10 +736,10 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<Capital> capitals = new ArrayList<Capital>();
+            ArrayList<City> capitals = new ArrayList<City>();
             while (rset.next())
             {
-                Capital cptl = new Capital();
+                City cptl = new City();
                 cptl.Name = rset.getString("city.name");
                 cptl.Population = rset.getInt("city.population");
                 capitals.add(cptl);
@@ -757,7 +757,7 @@ public class QueryHandler {
     }
 
     /*All the capital cities in a continent organised by largest population to smallest. */
-    public ArrayList<Capital> continentCapitalCityPop(String continent)
+    public ArrayList<City> continentCapitalCityPop(String continent)
     {
         try
         {
@@ -772,10 +772,10 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<Capital> capitals = new ArrayList<Capital>();
+            ArrayList<City> capitals = new ArrayList<City>();
             while (rset.next())
             {
-                Capital cptl = new Capital();
+                City cptl = new City();
                 cptl.Name = rset.getString("city.name");
                 cptl.Population = rset.getInt("city.population");
                 capitals.add(cptl);
@@ -793,7 +793,7 @@ public class QueryHandler {
     }
 
     /*All the capital cities in a region organised by largest to smallest. */
-    public ArrayList<Capital> regionCapitalCityPop(String region)
+    public ArrayList<City> regionCapitalCityPop(String region)
     {
         try
         {
@@ -808,10 +808,10 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<Capital> capitals = new ArrayList<Capital>();
+            ArrayList<City> capitals = new ArrayList<City>();
             while (rset.next())
             {
-                Capital cptl = new Capital();
+                City cptl = new City();
                 cptl.Name = rset.getString("city.name");
                 cptl.Population = rset.getInt("city.population");
                 capitals.add(cptl);
@@ -829,7 +829,7 @@ public class QueryHandler {
     }
 
     /*The top N populated capital cities in the world WHERE N is provided by the user.*/
-    public ArrayList<Capital> nWorldCapitalCityPop(String N)
+    public ArrayList<City> nWorldCapitalCityPop(String N)
     {
         try
         {
@@ -844,10 +844,10 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<Capital> capitals = new ArrayList<Capital>();
+            ArrayList<City> capitals = new ArrayList<City>();
             while (rset.next())
             {
-                Capital cptl = new Capital();
+                City cptl = new City();
                 cptl.Name = rset.getString("city.name");
                 cptl.Population = rset.getInt("city.population");
                 capitals.add(cptl);
@@ -865,7 +865,7 @@ public class QueryHandler {
     }
 
     /*The top N populated capital cities in a continent WHERE N is provided by the user.*/
-    public ArrayList<Capital> nContinentCapitalCityPop(String N, String continent)
+    public ArrayList<City> nContinentCapitalCityPop(String N, String continent)
     {
         try
         {
@@ -880,10 +880,10 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<Capital> capitals = new ArrayList<Capital>();
+            ArrayList<City> capitals = new ArrayList<City>();
             while (rset.next())
             {
-                Capital cptl = new Capital();
+                City cptl = new City();
                 cptl.Name = rset.getString("city.name");
                 cptl.Population = rset.getInt("city.population");
                 capitals.add(cptl);
@@ -901,7 +901,7 @@ public class QueryHandler {
     }
 
     /*The top N populated capital cities in a region WHERE N is provided by the user.*/
-    public ArrayList<Capital> nRegionCapitalCityPop(String N, String region)
+    public ArrayList<City> nRegionCapitalCityPop(String N, String region)
     {
         try
         {
@@ -916,10 +916,10 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<Capital> capitals = new ArrayList<Capital>();
+            ArrayList<City> capitals = new ArrayList<City>();
             while (rset.next())
             {
-                Capital cptl = new Capital();
+                City cptl = new City();
                 cptl.Name = rset.getString("city.name");
                 cptl.Population = rset.getInt("city.population");
                 capitals.add(cptl);
@@ -939,7 +939,7 @@ public class QueryHandler {
     /*---------------------------------------------------------------------------------------------------------------*/
 
     /*The population of people, people living in cities, and people not living in cities in each continent.*/
-    public ArrayList<CityInOut> continentInOutCityPop()
+    public ArrayList<City> continentInOutCityPop()
     {
         try
         {
@@ -953,13 +953,13 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<CityInOut> citiesInOut = new ArrayList<CityInOut>();
+            ArrayList<City> citiesInOut = new ArrayList<City>();
             while (rset.next()) {
-                CityInOut cityInOut = new CityInOut();
+                City cityInOut = new City();
                 cityInOut.Name = rset.getString("Continent");
-                cityInOut.PopulationTotal = rset.getInt("Population");
-                cityInOut.CityPopulationTotal = rset.getInt("City_Population");
-                cityInOut.PopulationDifference = rset.getInt("NotInCities");
+                cityInOut.Population = rset.getInt("Population");
+                cityInOut.CityPopulation = rset.getInt("City_Population");
+                cityInOut.NonCityPopulation = rset.getInt("NotInCities");
                 citiesInOut.add(cityInOut);
             }
             return citiesInOut;
@@ -975,7 +975,7 @@ public class QueryHandler {
     }
 
     /*The population of people, people living in cities, and people not living in cities in each region.*/
-    public ArrayList<CityInOut> regionInOutCityPop() {
+    public ArrayList<City> regionInOutCityPop() {
         try
         {
             // Generate the SQL statement
@@ -988,13 +988,13 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<CityInOut> citiesInOut = new ArrayList<CityInOut>();
+            ArrayList<City> citiesInOut = new ArrayList<City>();
             while (rset.next()) {
-                CityInOut cityInOut = new CityInOut();
+                City cityInOut = new City();
                 cityInOut.Name = rset.getString("Continent");
-                cityInOut.PopulationTotal = rset.getInt("Population");
-                cityInOut.CityPopulationTotal = rset.getInt("City_Population");
-                cityInOut.PopulationDifference = rset.getInt("NotInCities");
+                cityInOut.Population = rset.getInt("Population");
+                cityInOut.CityPopulation = rset.getInt("City_Population");
+                cityInOut.NonCityPopulation = rset.getInt("NotInCities");
                 citiesInOut.add(cityInOut);
             }
             return citiesInOut;
@@ -1010,7 +1010,7 @@ public class QueryHandler {
     }
 
     /*The population of people, people living in cities, and people not living in cities in each country.*/
-    public ArrayList<CityInOut> countryInOutCityPop() {
+    public ArrayList<City> countryInOutCityPop() {
         try
         {
             // Generate the SQL statement
@@ -1023,13 +1023,13 @@ public class QueryHandler {
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
-            ArrayList<CityInOut> citiesInOut = new ArrayList<CityInOut>();
+            ArrayList<City> citiesInOut = new ArrayList<City>();
             while (rset.next()) {
-                CityInOut cityInOut = new CityInOut();
+                City cityInOut = new City();
                 cityInOut.Name = rset.getString("Continent");
-                cityInOut.PopulationTotal = rset.getInt("Population");
-                cityInOut.CityPopulationTotal = rset.getInt("City_Population");
-                cityInOut.PopulationDifference = rset.getInt("NotInCities");
+                cityInOut.Population = rset.getInt("Population");
+                cityInOut.CityPopulation = rset.getInt("City_Population");
+                cityInOut.NonCityPopulation = rset.getInt("NotInCities");
                 citiesInOut.add(cityInOut);
             }
             return citiesInOut;
