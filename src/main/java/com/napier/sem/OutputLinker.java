@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 
 public class OutputLinker {
+    //Used to create a table that is based on the Country object
     public void countryTable(ArrayList<Country> inputList,  boolean doubleTable){
         OutputUIclass outputUI = new OutputUIclass();
         String[][] string = new String[inputList.size()][4];
@@ -28,6 +29,7 @@ public class OutputLinker {
 
 
     }
+    //Used to create a table that is based on the City object
     public void cityTable(ArrayList<City> inputList,  boolean doubleTable) {
         OutputUIclass outputUI = new OutputUIclass();
         String[][] string = new String[inputList.size()][3];
@@ -46,11 +48,12 @@ public class OutputLinker {
     public void extraTable(){
 
     }
-
+    //used to process the output data from a query to make it readable to the table builder
     public boolean SQLinititate(String input, String countryInput, String distInput, String contInput, String regInput, String numbInput, Boolean needSubtable) {
-        queryfile query = new queryfile();
+        QueryHandler query = new QueryHandler("./db/test_db/world.sql");
         OutputUIclass outputUI = new OutputUIclass();
         try{
+            //used to select which query to run based on user input
         if (input == "1") {
 
             ArrayList<Country> list = query.popWorld();
