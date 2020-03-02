@@ -99,11 +99,11 @@ public class OutputUI {
     // Used from github.com/Kevin-Sim/SET08103/blob/master/labs/lab03/README.md | Extracting Connect and Disconnect Functionality
 
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         JFrame frame = new JFrame("OutputUI");
         frame.setContentPane(new OutputUI().OutputUIpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
+    }*/
 }

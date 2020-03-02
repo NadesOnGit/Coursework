@@ -26,6 +26,9 @@ public class App {
         //Initialise the QueryHandler to display the appropriate inputs to the user.
         queryHandler = new QueryHandler("db/world.sql");
 
+        System.out.println(queryHandler.getErrorMessage());
+
+
         //Initialise the frame and set its parameters.
         frame = new JFrame("Software Engineering Methods Coursework");
         frame.setVisible(true);
@@ -53,7 +56,7 @@ public class App {
         //Add the Dropdown list for the Reports.
         String[] reportChoices = {"","Countries","Cities","Capital Cities","Population"};
 
-        JComboBox<String> reportDropdown = new JComboBox<String>(reportChoices);
+        final JComboBox reportDropdown = new JComboBox(reportChoices);
         panel.add(reportDropdown);
 
         reportDropdown.setSize(350, 20);
@@ -97,7 +100,7 @@ public class App {
                 "The population of people, people living in cities, and people not living in cities in each country."
         };
 
-        JComboBox<String> queryDropdown = new JComboBox<String>(queryChoices);
+        final JComboBox queryDropdown = new JComboBox(queryChoices);
         panel.add(queryDropdown);
 
         queryDropdown.setSize(350, 20);

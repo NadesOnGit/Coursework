@@ -24,16 +24,32 @@ public class QueryHandler {
      */
     public QueryHandler(String filename) {
         try {
-            //Establish a connection to the database. Username value?
-            con = DriverManager.getConnection("jdbc:mysql//localhost:8080/"+filename, "", "example");
-            errorMessage = null;
-        } catch (SQLException e) {
-            //Build the error message.
-            errorMessage = new StringBuilder("Error: ");
-
-            errorMessage.append(e.getMessage());
-            errorMessage.append(" - Unable to connect with database\n");
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Could not load SQL driver.");
         }
+
+        int retries = 5;
+        for(int i = 0; i < retries; i++){
+            try {
+                //Establish a connection to the database. Username value
+                Thread.sleep(3000);
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                System.out.println("Succesfully Connected.");
+                errorMessage = null;
+                break;
+            } catch (SQLException e) {
+                //Build the error message.
+                errorMessage = new StringBuilder("Error: ");
+
+                errorMessage.append(e.getMessage());
+                errorMessage.append(" - Unable to connect with database\n");
+            }
+            catch(InterruptedException ie){
+                System.out.println("Thread interrupted? Should not happen.");
+            }
+        }
+
     }
 
     /*
@@ -52,7 +68,7 @@ public class QueryHandler {
             Statement stmt = con.createStatement();
 
             //Add SQL statement to a string
-            String strSelect = "SELECT DISTINCT Continent FROM country";
+            String strSelect = "SELECT DISTINCT Continent FROM country;";
 
             //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -71,7 +87,6 @@ public class QueryHandler {
 
             errorMessage.append(e.getMessage());
             errorMessage.append(" - Unable to print continent names\n");
-
             return null;
         }
     }
@@ -86,7 +101,7 @@ public class QueryHandler {
             Statement stmt = con.createStatement();
 
             //Add SQL statement to a string
-            String strSelect = "SELECT DISTINCT Region FROM country";
+            String strSelect = "SELECT DISTINCT Region FROM country;";
 
             //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -119,7 +134,7 @@ public class QueryHandler {
             Statement stmt = con.createStatement();
 
             //Add SQL statement to a string
-            String strSelect = "SELECT DISTINCT Region FROM country";
+            String strSelect = "SELECT DISTINCT Region FROM country;";
 
             //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -155,7 +170,7 @@ public class QueryHandler {
             String strSelect =
                     "SELECT country.name, country.population "
                             + "FROM country "
-                            + "ORDER BY country.population DESC";
+                            + "ORDER BY country.population DESC;";
             //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -191,7 +206,7 @@ public class QueryHandler {
                     "SELECT country.name, country.population "
                             + "FROM country "
                             + "WHERE country.Continent = '"+ continent +"'"
-                            + "ORDER BY country.population DESC";
+                            + "ORDER BY country.population DESC;";
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
@@ -226,7 +241,7 @@ public class QueryHandler {
                     "SELECT country.name, country.population "
                             + "FROM country "
                             + "WHERE country.Region = '"+ region +"'"
-                            + "ORDER BY country.population DESC";
+                            + "ORDER BY country.population DESC;";
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
