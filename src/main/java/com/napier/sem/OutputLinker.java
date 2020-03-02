@@ -9,18 +9,56 @@ import java.util.ArrayList;
 
 
 public class OutputLinker {
+    public void countryTable(ArrayList<Country> inputList,  boolean doubleTable){
+        OutputUIclass outputUI = new OutputUIclass();
+        String[][] string = new String[inputList.size()][4];
+        for (int i = 0; i < inputList.size(); i++) {
+            string[i][0] = inputList.get(i).Code;
+            string[i][1] = inputList.get(i).Name;
+            string[i][2] = inputList.get(i).Region;
+            string[i][3] = Double.toString(inputList.get(i).Population);
+            string[i][4] = Integer.toString(inputList.get(i).Capital);
+        }
+        if(doubleTable){
+            //outputUI.tableDouble(inputList,);
+        }
+        else {
+            outputUI.tableSingle(string);
+        }
+
+
+    }
+    public void cityTable(ArrayList<City> inputList,  boolean doubleTable) {
+        OutputUIclass outputUI = new OutputUIclass();
+        String[][] string = new String[inputList.size()][3];
+        for (int i = 0; i < inputList.size(); i++) {
+            string[i][0] = inputList.get(i).Name;
+            string[i][1] = inputList.get(i).Country;
+            string[i][2] = inputList.get(i).District;
+            string[i][3] = Integer.toString(inputList.get(i).Population);
+        }
+        if (doubleTable) {
+            //outputUI.tableDouble(inputList,);
+        } else {
+            outputUI.tableSingle(string);
+        }
+    }
+    public void extraTable(){
+
+    }
+
     public boolean SQLinititate(String input, String countryInput, String distInput, String contInput, String regInput, String numbInput, Boolean needSubtable) {
         queryfile query = new queryfile();
         OutputUIclass outputUI = new OutputUIclass();
-
-        if (input == "e") {
+        try{
+        if (input == "1") {
 
             ArrayList<Country> list = query.popWorld();
 
             String[][] string = new String[list.size()][4];
             for (int i = 0; i < list.size(); i++) {
-                string[i][0] = list.get(i).Code;
-                string[i][1] = list.get(i).Name;
+                string[i][0] = list.get(i).Name;
+                string[i][1] = list.get(i).Continent;
                 string[i][2] = list.get(i).Region;
                 string[i][3] = Double.toString(list.get(i).Population);
                 string[i][4] = Integer.toString(list.get(i).Capital);
@@ -29,50 +67,57 @@ public class OutputLinker {
         } else if (input == "e") {
             ArrayList<Country> list = query.popContinent(contInput);
             //ArrayList<country> contextList = query.whatevermothoditscalled();
-            String[][] string = new String[list.size()][1];
+            String[][] string = new String[list.size()][4];
             for (int i = 0; i < list.size(); i++) {
                 string[i][0] = list.get(i).Name;
-                string[i][1] = Double.toString(list.get(i).Population);
-
+                string[i][1] = list.get(i).Continent;
+                string[i][2] = list.get(i).Region;
+                string[i][3] = Double.toString(list.get(i).Population);
+                string[i][4] = Integer.toString(list.get(i).Capital);
             }
             outputUI.tableSingle(string);
         } else if (input == "e") {
             ArrayList<Country> list = query.popRegion(regInput);
-            String[][] string = new String[list.size()][1];
+            String[][] string = new String[list.size()][4];
             for (int i = 0; i < list.size(); i++) {
                 string[i][0] = list.get(i).Name;
-                string[i][1] = Double.toString(list.get(i).Population);
-
+                string[i][1] = list.get(i).Continent;
+                string[i][2] = list.get(i).Region;
+                string[i][3] = Double.toString(list.get(i).Population);
+                string[i][4] = Integer.toString(list.get(i).Capital);
             }
             outputUI.tableSingle(string);
         } else if (input == "e") {
             ArrayList<Country> list = query.nWorldCountryPop(numbInput);
-            String[][] string = new String[list.size()][2];
+            String[][] string = new String[list.size()][4];
             for (int i = 0; i < list.size(); i++) {
                 string[i][0] = list.get(i).Name;
                 string[i][1] = list.get(i).Continent;
-                string[i][2] = Double.toString(list.get(i).Population);
-
+                string[i][2] = list.get(i).Region;
+                string[i][3] = Double.toString(list.get(i).Population);
+                string[i][4] = Integer.toString(list.get(i).Capital);
             }
             outputUI.tableSingle(string);
         } else if (input == "e") {
             ArrayList<Country> list = query.nContinentCountryPop(numbInput, contInput);
-            String[][] string = new String[list.size()][2];
+            String[][] string = new String[list.size()][4];
             for (int i = 0; i < list.size(); i++) {
                 string[i][0] = list.get(i).Name;
                 string[i][1] = list.get(i).Continent;
-                string[i][2] = Double.toString(list.get(i).Population);
-
+                string[i][2] = list.get(i).Region;
+                string[i][3] = Double.toString(list.get(i).Population);
+                string[i][4] = Integer.toString(list.get(i).Capital);
             }
             outputUI.tableSingle(string);
         } else if (input == "e") {
             ArrayList<Country> list = query.nRegionCountryPop(numbInput, regInput);
-            String[][] string = new String[list.size()][2];
+            String[][] string = new String[list.size()][4];
             for (int i = 0; i < list.size(); i++) {
                 string[i][0] = list.get(i).Name;
                 string[i][1] = list.get(i).Continent;
-                string[i][2] = Double.toString(list.get(i).Population);
-
+                string[i][2] = list.get(i).Region;
+                string[i][3] = Double.toString(list.get(i).Population);
+                string[i][4] = Integer.toString(list.get(i).Capital);
             }
             outputUI.tableSingle(string);
         } else if (input == "e") {
@@ -235,6 +280,9 @@ public class OutputLinker {
                 string[i][4] = Integer.toString(list.get(i).Population);
             }
             outputUI.tableSingle(string);
+        }
+        }catch (Exception e){
+
         }
 
 
