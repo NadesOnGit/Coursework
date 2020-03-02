@@ -23,6 +23,10 @@ public class OutputUI {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
+                OutputLinker output = new OutputLinker();
+                output.SQLinititate("1",null,null,null,null,null,null);
+
+/*
                 int rowCount;
                 System.out.println("eee");
 
@@ -83,6 +87,9 @@ public class OutputUI {
                 frame.setSize(500, 200);
                 frame.setVisible(true);
 
+            }
+
+ */
             }
         });
 

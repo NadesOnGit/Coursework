@@ -12,7 +12,7 @@ import java.awt.*;
 
 
 public class OutputUIclass {
-
+/*
     public String[][] tableBuilder(ArrayList[] inputString) {
         String[] stringList = new String[inputString.length];
         int rowCount;
@@ -69,6 +69,8 @@ public class OutputUIclass {
         return rowOutputFix;
 
     }
+
+ */
 
     public void tableSingle(String[][] inputData) {
         //Creates new table frame

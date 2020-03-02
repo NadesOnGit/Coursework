@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 
 public class OutputLinker {
+    /*
     //Used to create a table that is based on the Country object
     public void countryTable(ArrayList<Country> inputList,  boolean doubleTable){
         OutputUIclass outputUI = new OutputUIclass();
@@ -48,9 +49,11 @@ public class OutputLinker {
     public void extraTable(){
 
     }
+
+ */
     //used to process the output data from a query to make it readable to the table builder
     public boolean SQLinititate(String input, String countryInput, String distInput, String contInput, String regInput, String numbInput, Boolean needSubtable) {
-        QueryHandler query = new QueryHandler("./db/test_db/world.sql");
+        QueryHandler query = new QueryHandler("world.sql");
         OutputUIclass outputUI = new OutputUIclass();
         try{
             //used to select which query to run based on user input
@@ -285,7 +288,7 @@ public class OutputLinker {
             outputUI.tableSingle(string);
         }
         }catch (Exception e){
-
+            String ee="oh god oh fuck";
         }
 
 
