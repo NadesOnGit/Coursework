@@ -34,8 +34,8 @@ public class QueryHandler {
             try {
                 //Establish a connection to the database. Username value
                 Thread.sleep(3000);
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Succesfully Connected.");
+                con = DriverManager.getConnection("jdbc:mysql://db/test_db:3306/world?useSSL=false", "root", "example");
+                System.out.println("Successfully Connected.");
                 errorMessage = null;
                 break;
             } catch (SQLException e) {
