@@ -15,9 +15,8 @@ class QueryHandlerTest {
 
     @org.junit.jupiter.api.Test
     void getContinents() {
-        ArrayList<String> continents = Array.asList(
-            new String();
-        );
+
+
     }
 
     @org.junit.jupiter.api.Test

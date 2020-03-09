@@ -28,25 +28,26 @@ public class QueryHandler {
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver.");
         }
-
+        System.out.println("Hello");
         int retries = 5;
         for(int i = 0; i < retries; i++){
             try {
+                System.out.println("Mo");
                 //Establish a connection to the database. Username value
-                Thread.sleep(3000);
-                con = DriverManager.getConnection("jdbc:mysql://db/test_db:3306/world?useSSL=false", "root", "example");
+                Thread.sleep(10000);
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully Connected.");
                 errorMessage = null;
                 break;
             } catch (SQLException e) {
                 //Build the error message.
                 errorMessage = new StringBuilder("Error: ");
-
+                System.out.println("error");
                 errorMessage.append(e.getMessage());
                 errorMessage.append(" - Unable to connect with database\n");
             }
             catch(InterruptedException ie){
-                System.out.println("Thread interrupted? Should not happen.");
+                //System.out.println("Thread interrupted? Should not happen.");
             }
         }
 
@@ -76,7 +77,7 @@ public class QueryHandler {
             //Extract the name of the continents from the ResultSet.
             ArrayList<String> continents = new ArrayList<String>();
             while (rset.next()) {
-                continents.add(rset.getString("Continents"));
+                continents.add(rset.getString("Continent"));
             }
 
             return continents;

@@ -22,7 +22,7 @@ public class App {
      */
     public static void main(String[] args) {
         //Initialise the QueryHandler to display the appropriate inputs to the user.
-        QueryHandler queryHandler = new QueryHandler("db/world.sql");
+        QueryHandler queryHandler = new QueryHandler("db/test_db/world.sql");
         ArrayList<String> Continents;
         Continents = queryHandler.getContinents();
         for(int i = 0; i < Continents.size(); i++){
