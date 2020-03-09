@@ -1,6 +1,0 @@
-[submodule "Coursework"]
-	path = Coursework
-	url = https://github.com/NadesOnGit/Coursework/
-[submodule "db/world_db"]
-	path = db/world_db
-	url = https://github.com/NadesOnGit/Coursework/
