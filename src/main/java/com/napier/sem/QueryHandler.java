@@ -25,7 +25,7 @@ public class QueryHandler {
     public QueryHandler(String filename) {
         try {
             //Establish a connection to the database. Username value?
-            con = DriverManager.getConnection("jdbc:mysql//localhost:8080/"+filename, "", "example");
+            con = DriverManager.getConnection("jdbc:mysql//db/3006/world?useSSL=false", "root", "example");
             errorMessage = null;
         } catch (SQLException e) {
             //Build the error message.

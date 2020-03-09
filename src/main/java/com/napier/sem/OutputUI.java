@@ -19,7 +19,11 @@ public class OutputUI {
     private JTextPane textPane1;
     public int coloumCount;
     public OutputUI() {
-        button1.addActionListener(new ActionListener() {
+        JFrame frame = new JFrame();
+
+       button1 = new JButton("Press Me");
+       frame.add(button1);
+    button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
