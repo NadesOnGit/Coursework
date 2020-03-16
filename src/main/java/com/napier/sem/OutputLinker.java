@@ -6,10 +6,14 @@ import java.util.ArrayList;
 /*
     Jack Masterton
  */
+
+
 public class OutputLinker {
-    public static boolean SQLinititate(String input, String countryInput, String distInput, String contInput, String regInput, String numbInput) {
+
+
+    //used to process the output data from a query to make it readable to the table builder
+    public boolean SQLinititate(String input, String countryInput, String distInput, String contInput, String regInput, String numbInput) {
         QueryHandler query = new QueryHandler("world.sql");
-        OutputUIclass outputUI = new OutputUIclass();
 
         try {
             //used to select which query to run based on user input
@@ -167,16 +171,21 @@ public class OutputLinker {
                 for (City city : list) {
                     System.out.format("%-18s%-8s%-8s", city.Name, city.Country, city.District, city.Population);
                 }
+
+            }else if (input=="IFSTATEMENTTEST"){
+                return true;
             }
 
 
-            return true;
+            return false;
 
 
         }catch (Exception e){
 
         }
-        return true;
+        return false;
 
     }
+
 }
+

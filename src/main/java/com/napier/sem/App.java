@@ -19,6 +19,7 @@ public class App {
     private static JFrame frame;
     private static Scanner in;
     private static int capitalCities, cities, countries;
+    private static OutputLinker outputLinker = new OutputLinker();
 
     /*
      * Purpose: Entry Point of the Program.
@@ -113,13 +114,13 @@ public class App {
 
         //Call the correct query.
         if (input.contains("Population Report")) {
-            OutputLinker.SQLinititate(input, "","", "","","");
+            outputLinker.SQLinititate(input, "","", "","","");
         } else if (input.contains("Capital Cities Report")) {
-            OutputLinker.SQLinititate(input, "","","","","");
+            outputLinker.SQLinititate(input, "","","","","");
         } else if (input.contains("Cities Report")) {
-            OutputLinker.SQLinititate(input, "","","","","");
+            outputLinker.SQLinititate(input, "","","","","");
         } else if (input.contains("Country Report")) {
-            OutputLinker.SQLinititate(input, "","","","","");
+            outputLinker.SQLinititate(input, "","","","","");
         } else if (input.contains("continent")) {
             if (!input.contains("N")) {
                 queryContinent(input);
@@ -148,11 +149,11 @@ public class App {
                 //Call OutputLinker.SQLinitiate();
                 int index = Integer.parseInt(userInput);
                 if (capitalCities != -1) {
-                    OutputLinker.SQLinititate(input, "", "", continents.get(index), "", String.valueOf(capitalCities));
+                    outputLinker.SQLinititate(input, "", "", continents.get(index), "", String.valueOf(capitalCities));
                 } else if (cities  != -1) {
-                    OutputLinker.SQLinititate(input, "", "", continents.get(index), "", String.valueOf(cities));
+                    outputLinker.SQLinititate(input, "", "", continents.get(index), "", String.valueOf(cities));
                 } else {
-                    OutputLinker.SQLinititate(input, "", "", continents.get(index), "", String.valueOf(countries));
+                    outputLinker.SQLinititate(input, "", "", continents.get(index), "", String.valueOf(countries));
                 }
             }
         } else if (input.contains("region")) {
@@ -183,11 +184,11 @@ public class App {
                 //Call OutputLinker.SQLinitiate();
                 int index = Integer.parseInt(userInput)-1;
                 if (capitalCities != -1) {
-                    OutputLinker.SQLinititate(input, "", "", "", regions.get(index), String.valueOf(capitalCities));
+                    outputLinker.SQLinititate(input, "", "", "", regions.get(index), String.valueOf(capitalCities));
                 } else if (cities  != -1) {
-                    OutputLinker.SQLinititate(input, "", "", "", regions.get(index), String.valueOf(cities));
+                    outputLinker.SQLinititate(input, "", "", "", regions.get(index), String.valueOf(cities));
                 } else {
-                    OutputLinker.SQLinititate(input, "", "", "", regions.get(index), String.valueOf(countries));
+                    outputLinker.SQLinititate(input, "", "", "", regions.get(index), String.valueOf(countries));
                 }
             }
         } else if (input.contains("country")) {
@@ -218,11 +219,11 @@ public class App {
                 //Call OutputLinker.SQLinitiate();
                 int index = Integer.parseInt(userInput)-1;
                 if (capitalCities != -1) {
-                    OutputLinker.SQLinititate(input, _countries.get(index), "", "", "", String.valueOf(capitalCities));
+                    outputLinker.SQLinititate(input, _countries.get(index), "", "", "", String.valueOf(capitalCities));
                 } else if (cities  != -1) {
-                    OutputLinker.SQLinititate(input, _countries.get(index), "", "", "", String.valueOf(cities));
+                    outputLinker.SQLinititate(input, _countries.get(index), "", "", "", String.valueOf(cities));
                 } else {
-                    OutputLinker.SQLinititate(input, _countries.get(index), "", "", "", String.valueOf(countries));
+                    outputLinker.SQLinititate(input, _countries.get(index), "", "", "", String.valueOf(countries));
                 }
             }
         } else if (input.contains("district")) {
@@ -253,21 +254,21 @@ public class App {
                 //Call OutputLinker.SQLinitiate();
                 int index = Integer.parseInt(userInput)-1;
                 if (capitalCities != -1) {
-                    OutputLinker.SQLinititate(input, "", districts.get(index), "", "", String.valueOf(capitalCities));
+                    outputLinker.SQLinititate(input, "", districts.get(index), "", "", String.valueOf(capitalCities));
                 } else if (cities  != -1) {
-                    OutputLinker.SQLinititate(input, "", districts.get(index), "", "", String.valueOf(cities));
+                    outputLinker.SQLinititate(input, "", districts.get(index), "", "", String.valueOf(cities));
                 } else {
-                    OutputLinker.SQLinititate(input, "", districts.get(index), "", "", String.valueOf(countries));
+                    outputLinker.SQLinititate(input, "", districts.get(index), "", "", String.valueOf(countries));
                 }
             }
         } else if (input.contains("world")) {
             //There is no need to receive an input from the user.
             if (capitalCities != -1) {
-                OutputLinker.SQLinititate(input, "", "", "", "", String.valueOf(capitalCities));
+                outputLinker.SQLinititate(input, "", "", "", "", String.valueOf(capitalCities));
             } else if (cities  != -1) {
-                OutputLinker.SQLinititate(input, "", "", "", "", String.valueOf(cities));
+                outputLinker.SQLinititate(input, "", "", "", "", String.valueOf(cities));
             } else {
-                OutputLinker.SQLinititate(input, "", "", "", "", String.valueOf(countries));
+                outputLinker.SQLinititate(input, "", "", "", "", String.valueOf(countries));
             }
         }
     }
@@ -310,7 +311,7 @@ public class App {
             }
 
             //Since the user selected a query with each in it, we do not need them to enter a value.
-            OutputLinker.SQLinititate(value, "", input,"","","");
+            outputLinker.SQLinititate(value, "", input,"","","");
         } else {
             //Since the user selected a query that does not contain each, we need to find the number of
             //continents the user wants for the query.
@@ -328,7 +329,7 @@ public class App {
 
             //Call the query or call this query again if there is an error.
             if (input != "") {
-                OutputLinker.SQLinititate(value, "","","","", input);
+                outputLinker.SQLinititate(value, "","","","", input);
             } else {
                 queryDistrict(value);
             }
@@ -373,7 +374,7 @@ public class App {
             }
 
             //Since the user selected a query with each in it, we do not need them to enter a value.
-            OutputLinker.SQLinititate(value, "","",input,"","");
+            outputLinker.SQLinititate(value, "","",input,"","");
         } else {
             //Retrieve the user input.
             while (!exit) {
@@ -390,7 +391,7 @@ public class App {
 
             //Call the query or call this query again if there is an error.
             if (input != "") {
-                OutputLinker.SQLinititate(value, "","","","", input);
+                outputLinker.SQLinititate(value, "","","","", input);
             } else {
                 queryContinent(value);
             }
@@ -435,7 +436,7 @@ public class App {
             }
 
             //Since the user selected a query with each in it, we do not need them to enter a value.
-            OutputLinker.SQLinititate(value, "","","", input,"");
+            outputLinker.SQLinititate(value, "","","", input,"");
         } else {
             //Since the user selected a query that does not contain each, we need to find the number of
             //regions the user wants for the query.
@@ -453,7 +454,7 @@ public class App {
 
             //Call the query or call this query again if there is an error.
             if (input != "") {
-                OutputLinker.SQLinititate(value,"","","","", input);
+                outputLinker.SQLinititate(value,"","","","", input);
             } else {
                 queryRegion(value);
             }
@@ -498,7 +499,7 @@ public class App {
             }
 
             //Since the user selected a query with each in it, we do not need them to enter a value.
-            OutputLinker.SQLinititate(value, input,"","","","");
+            outputLinker.SQLinititate(value, input,"","","","");
         } else {
             //Since the user selected a query without each in it, we need them to enter a value.
             while (!exit) {
@@ -515,7 +516,7 @@ public class App {
 
             //Call the query.
             if (input != "") {
-                OutputLinker.SQLinititate(value, "","","","", input);
+                outputLinker.SQLinititate(value, "","","","", input);
             } else {
                 queryCountry(value);
             }
