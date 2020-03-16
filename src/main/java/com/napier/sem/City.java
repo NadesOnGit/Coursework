@@ -11,4 +11,6 @@ public class City {
     public String Country;
     public String District;
     public int Population;
+    public int CityPopulation;
+    public int NonCityPopulation;
 }

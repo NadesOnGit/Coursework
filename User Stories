@@ -1,0 +1,37 @@
+As a surveyor I want a report on all the countries in the world organised by descending population so that I can find the countries with the largest populations
+As a surveyor I want a report on all the countries in the world organised by descending population in a continent given by the user so that I can find the most populous countries in a given continent
+As a surveyor I want a report on all the countries in the world organised by descending population in a region given be the user so I can find the most populous countries in a given region
+As a surveyor I want a report on the most populous countries with amount given by the user so I can find the top X most populous countries in the world
+As a surveyor I want a report on the most populous countries per continent with amount given by the user so I can find the X largest countries in a continent
+As a surveyor I want a report on the most populous countries per region with the amount given by the user so I can find the X largest countries in a region 
+As a surveyor I want a report on all the cities in the world organised by descending population so I can find the largest cities in the world
+As a surveyor I want a report on all the cities in a specific continent organised by descending population so I can find the largest cities in a given continent
+As a surveyor I want a report on all the cities in a specific region organised by descending so I can find the largest cities in a given region 
+As a surveyor I want a report on all the cities in a specific country organised by descending population so I can find the largest city in a country
+As a surveyor I want a report on all the cities in a specific district organised by descending population so I can find the largest city in a district
+As a surveyor I want a report on the most populous cities with amount given by the user so I can find the top X largest cities in the world
+As a surveyor I want a report on the most populous cities per continent with amount given by the user so I can find the top X largest cities in a given continent
+As a surveyor I want a report on the most populous cities per region with the amount given by the user so I can find the top X largest cities in a given region
+As a surveyor I want a report on the most populous cities per country with the amount given by the user so I can find the to X largest cities in a given country
+As a surveyor I want a report on the most populous cities per district with the amount given by the user so I can find the top X largest cities in a given district
+As a surveyor I want a repot on the most populous capital cities in the world with the amount given by the user so I can find the largest capital cities in the world
+As a surveyor I want a report on the most populous capital cities in a continent with the amount given by the user so I can find the largest cities in a given continent
+As a surveyor I want a report on the most populous capital cities in a region with the amount given by the user so I can find the largest cities in a given region
+As a surveyor I want a report on the total population of people the total population of people living in cities and the total population of people not living in cities in each continent so I can get the rural vs urban populations of the world
+As a surveyor I want a report on the total population of people the total population of people living in cities and the total population of people not living in cities in each region so I can get the rural vs urban populations of the region
+As a surveyor I want a report on the total population of people the total population of people living in cities and the total population of people not living in cities in each country so I can get the rural vs urban populations of the country
+As a surveyor I want to be able to access the population of the world so I can see the population of the world
+As a surveyor I want to be able to access the population of a specific continent so I can see the population of a continent
+As a surveyor I want to be able to access the population of a specific region so I can see the population of a region
+As a surveyor I want to be able to access the population of a specific country so I can see the population of a country 
+As a surveyor I want to be able to access the population of a specific district so I can see the population of a district
+As a surveyor I want to be able to access the population of a specific city so I can see the population of a city
+As a surveyor I want to be able to access the percentage of people in the world that speaks Chinese so I can see how many people speak Chinese
+As a surveyor I want to be able to access the percentage of people in the world that speaks English so I can see how many people speak English
+As a surveyor I want to be able to access the percentage of people in the world that speaks Hindi so I can see how many people speak Hindi
+As a surveyor I want to be able to access the percentage of people in the world that speaks Spanish so I can see how many people speak Spanish
+As a surveyor I want to be able to access the percentage of people in the world that speaks Arabic so I can see how many people speak Arabic
+As a surveyor I want the country report to contain a country code, name its continent its region its population and its capital so I can get basic info about the country to compare my data with
+As a surveyor I want the city report to contain its name, its country its district and its population so I can get basic info about the city to compare my data with
+As a surveyor I want the capital city report to contain its Name its country and its population so I can get basic info about the capital city to compare my data with
+As a surveyor I want the population report to contain the name of the continent/region/country and the total population of the continent/region/country and the total population of the continent/region/country living in cities and the total population of the continent/region/country not living in cities so I can get detailed info on where the population is to compare my data with
