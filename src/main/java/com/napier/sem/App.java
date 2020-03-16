@@ -61,13 +61,12 @@ public class App {
                 "The population of people, people living in cities, and people not living in cities in each country"
         };
 
-        String userInput = "";
         while (true) {
             //Display the options the user can select from.
             for (int i = 0; i < inputOptions.length; i++) {
                 System.out.println(String.valueOf(i+1) + ". " + inputOptions[i]);
             }
-
+            String userInput;
             //Retrieve the user input.
             System.out.println("Please enter the number of the query that you would like to call (or -1 if you want to exit the application): ");
             userInput = System.console().readLine();

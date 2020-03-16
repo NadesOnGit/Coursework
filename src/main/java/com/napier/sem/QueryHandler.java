@@ -24,9 +24,10 @@ public class QueryHandler {
      */
     public QueryHandler(String location) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver.");
+            System.exit(-1);
         }
 
         int retries = 5;
@@ -34,7 +35,7 @@ public class QueryHandler {
             try {
                 //Establish a connection to the database. Username value
                 Thread.sleep(10000);
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 errorMessage = null;
                 break;
