@@ -14,152 +14,168 @@ import java.util.List;
  * Last Date of Modification: 06/02/2020
  */
 public class QueryHandler {
-	//Instance Variables.
-	private StringBuilder errorMessage;
-	private Connection con;
-	
-	/*
-	 * Purpose: This establishes a conection to the database being used.
-	 * Parameters: filename - This is the name of the database that we are using.
-	 */
-	public QueryHandler(String filename) {
-		try {
-			//Establish a connection to the database. Username value?
-			con = DriverManager.getConnection("jdbc:mysql//localhost:8080/"+filename, "", "example");
-			errorMessage = null;
-		} catch (SQLException e) {
-			//Build the error message.
-            errorMessage = new StringBuilder("Error: ");
-			
-            errorMessage.append(e.getMessage());
-            errorMessage.append(" - Unable to connect with database\n");
-		}
-	}
-	
-	/*
-	 * Purpose: This returns the error message to the user.
-	 * Parameters: N/A.
-	 */
-	public StringBuilder getErrorMessage() { return errorMessage; }
-	
-    /* 
+    //Instance Variables.
+    private StringBuilder errorMessage;
+    private Connection con;
+
+    /*
+     * Purpose: This establishes a conection to the database being used.
+     * Parameters: filename - This is the name of the database that we are using.
+     */
+    public QueryHandler(String filename) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Could not load SQL driver.");
+        }
+        System.out.println("Hello");
+        int retries = 5;
+        for(int i = 0; i < retries; i++){
+            try {
+                System.out.println("Mo");
+                //Establish a connection to the database. Username value
+                Thread.sleep(10000);
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                System.out.println("Successfully Connected.");
+                errorMessage = null;
+                break;
+            } catch (SQLException e) {
+                //Build the error message.
+                errorMessage = new StringBuilder("Error: ");
+                System.out.println("error");
+                errorMessage.append(e.getMessage());
+                errorMessage.append(" - Unable to connect with database\n");
+            }
+            catch(InterruptedException ie){
+                //System.out.println("Thread interrupted? Should not happen.");
+            }
+        }
+
+    }
+
+    /*
+     * Purpose: This returns the error message to the user.
+     * Parameters: N/A.
+     */
+    public StringBuilder getErrorMessage() { return errorMessage; }
+
+    /*
      * Purpose: This returns the names of the continents that the user can choose from (MainUserInterface).
      * Parameters: N/A.
      */
     public ArrayList<String> getContinents() {
-		try {
+        try {
             //Generate the SQL statement
             Statement stmt = con.createStatement();
-            
-			//Add SQL statement to a string
-            String strSelect = "SELECT DISTINCT Continent FROM country";
-            
-			//Run SQL statement
+
+            //Add SQL statement to a string
+            String strSelect = "SELECT DISTINCT Continent FROM country;";
+
+            //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            
-			//Extract the name of the continents from the ResultSet.
+
+            //Extract the name of the continents from the ResultSet.
             ArrayList<String> continents = new ArrayList<String>();
             while (rset.next()) {
-                continents.add(rset.getString("Continents"));
+                continents.add(rset.getString("Continent"));
             }
-			
+
             return continents;
         } catch (Exception e) {
-			//
+            //
             // Build the error message.
             errorMessage = new StringBuilder("Error: ");
-			
+
             errorMessage.append(e.getMessage());
             errorMessage.append(" - Unable to print continent names\n");
-			
             return null;
         }
-	}
-    
-    /* 
+    }
+
+    /*
      * Purpose: This returns the names of the regions that the user can choose from (MainUserInterface).
      * Parameters: N/A.
      */
     public ArrayList<String> getRegions() {
-		try {
+        try {
             //Generate the SQL statement
             Statement stmt = con.createStatement();
-            
-			//Add SQL statement to a string
-            String strSelect = "SELECT DISTINCT Region FROM country";
-            
-			//Run SQL statement
+
+            //Add SQL statement to a string
+            String strSelect = "SELECT DISTINCT Region FROM country;";
+
+            //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            
-			//Extract the name of the region from the ResultSet.
+
+            //Extract the name of the region from the ResultSet.
             ArrayList<String> regions = new ArrayList<String>();
             while (rset.next()) {
                 regions.add(rset.getString("Region"));
             }
-			
+
             return regions;
         } catch (Exception e) {
-			//Build the error message.
+            //Build the error message.
             errorMessage = new StringBuilder("Error: ");
-			
+
             errorMessage.append(e.getMessage());
             errorMessage.append(" - Unable to print region names\n");
-			
+
             return null;
         }
-	}
-    
+    }
+
     /*
      * Purpose: This returns the names of the countries that the user can choose from (MainUserInterface).
      * Parameters: N/A
      */
-	public ArrayList<String> getCountries() {
-		try {
+    public ArrayList<String> getCountries() {
+        try {
             //Generate the SQL statement
             Statement stmt = con.createStatement();
-            
-			//Add SQL statement to a string
-            String strSelect = "SELECT DISTINCT Region FROM country";
-            
-			//Run SQL statement
+
+            //Add SQL statement to a string
+            String strSelect = "SELECT DISTINCT Region FROM country;";
+
+            //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            
-			//Extract the name of the region from the ResultSet.
+
+            //Extract the name of the region from the ResultSet.
             ArrayList<String> countries = new ArrayList<String>();
             while (rset.next()) {
                 countries.add(rset.getString("name"));
             }
-			
+
             return countries;
         } catch (Exception e) {
-			//Build the error message.
+            //Build the error message.
             errorMessage = new StringBuilder("Error: ");
-			
+
             errorMessage.append(e.getMessage());
             errorMessage.append(" - Unable to print country names\n");
-			
+
             return null;
         }
-	}
-    
-	/*
-	 * Purpose: This displays the populations of all of the countries.
-	 * Parameters: N/A
-	 */
+    }
+
+    /*
+     * Purpose: This displays the populations of all of the countries.
+     * Parameters: N/A
+     */
     public ArrayList<Country> popWorld() {
         try {
             //Generate the SQL statement
             Statement stmt = con.createStatement();
-            
-			//Add SQL statement to a string
+
+            //Add SQL statement to a string
             String strSelect =
                     "SELECT country.name, country.population "
                             + "FROM country "
-                            + "ORDER BY country.population DESC";
+                            + "ORDER BY country.population DESC;";
             //Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            
-			//Extract employee information
+
+            //Extract employee information
             ArrayList<Country> countries = new ArrayList<Country>();
             while (rset.next()) {
                 Country ctry = new Country();
@@ -191,7 +207,7 @@ public class QueryHandler {
                     "SELECT country.name, country.population "
                             + "FROM country "
                             + "WHERE country.Continent = '"+ continent +"'"
-                            + "ORDER BY country.population DESC";
+                            + "ORDER BY country.population DESC;";
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
@@ -226,7 +242,7 @@ public class QueryHandler {
                     "SELECT country.name, country.population "
                             + "FROM country "
                             + "WHERE country.Region = '"+ region +"'"
-                            + "ORDER BY country.population DESC";
+                            + "ORDER BY country.population DESC;";
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
@@ -948,8 +964,8 @@ public class QueryHandler {
             // Add SQL statement to a string
             String strSelect =
                     "SELECT continent AS Continent, SUM(DISTINCT country.population) AS Population, SUM(city.population) AS City_Population, (SUM(DISTINCT country.population) - SUM(city.population)) AS NotInCities "
-                + "FROM city JOIN country ON (country.code = city.countrycode) "
-                + "GROUP BY continent";
+                            + "FROM city JOIN country ON (country.code = city.countrycode) "
+                            + "GROUP BY continent;";
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
@@ -1000,8 +1016,7 @@ public class QueryHandler {
             return citiesInOut;
         }
         catch (Exception e)
-        {
-            errorMessage = new StringBuilder("Error: ");
+        {            errorMessage = new StringBuilder("Error: ");
             errorMessage.append(e.getMessage());
             errorMessage.append("Unable to print populations of all N capital cities in a region");
 
@@ -1019,7 +1034,7 @@ public class QueryHandler {
             String strSelect =
                     "SELECT continent AS Continent, SUM(DISTINCT country.population) AS Population, SUM(city.population) AS City_Population, (SUM(DISTINCT country.population) - SUM(city.population)) AS NotInCities "
                             + "FROM city JOIN country ON (country.code = city.countrycode) "
-                            + "GROUP BY country.name";
+                            + "GROUP BY country.name;";
             // Run SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract employee information
@@ -1040,6 +1055,259 @@ public class QueryHandler {
             errorMessage.append(e.getMessage());
             errorMessage.append("Unable to print populations of all N capital cities in a region");
 
+            return null;
+        }
+    }
+    /*Language Report*/
+    public ArrayList<String> languageReport()
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT rawpopdata.Population, CONCAT(Percentage,'%') AS Percentage, Language FROM country, (SELECT ROUND(langpop,0) AS Population, ROUND(langpop/worldp*100,0)  AS Percentage, language AS Language FROM country, (SELECT SUM(population*percentage/100) AS langpop, language"
+                            + "FROM country INNER JOIN countryLanguage ON country.Code = countryLanguage.countrycode"
+                            + "WHERE language ='english' or language = 'chinese' or language = 'spanish' or language = 'hindi' or language='arabic'"
+                            + "GROUP BY language)AS lang, (SELECT SUM(population) AS worldp FROM country)AS worldpop GROUP BY language ORDER BY langpop DESC)AS rawpopdata"
+                            + "GROUP BY Language ORDER BY population DESC;";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<String> langReport = new ArrayList<String>();
+            while (rset.next())
+            {
+                String language = rset.getString("Language");
+                String percentageSpeakers = rset.getString("Percentage");
+                langReport.add(language + ' ' + percentageSpeakers);
+            }
+            return langReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print language report");
+            System.out.println(errorMessage);
+            return null;
+        }
+    }
+
+    /*Population Report*/
+    /*World*/
+    public ArrayList<String> worldPopulationReport()
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT sum(Population) AS total_population "
+                            + "FROM country;";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<String> popReport = new ArrayList<String>();
+            while (rset.next())
+            {
+                String World = "World";
+                int Population = rset.getInt("total_population");
+                popReport.add(World);
+                popReport.add(Integer.toString((Population)));
+            }
+            return popReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print world population report");
+            System.out.println(errorMessage);
+            return null;
+        }
+    }
+
+    /*continent*/
+    public ArrayList<String> continentPopulationReport(String continent)
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT continent, sum(Population) AS total_population "
+                            + "FROM country"
+                            + "WHERE continent = '"+ continent +"';";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<String> popReport = new ArrayList<String>();
+            while (rset.next())
+            {
+                String Continent = rset.getString("continent");
+                int Population = rset.getInt("total_population");
+                popReport.add(Continent);
+                popReport.add(Integer.toString((Population)));
+            }
+            return popReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print continent population report");
+            System.out.println(errorMessage);
+            return null;
+        }
+    }
+
+    /*region*/
+    public ArrayList<Country> regionPopulationReport(String region)
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT region, sum(Population) AS total_population "
+                            + "FROM country"
+                            + "WHERE region = "+ region +";";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> popReport = new ArrayList<Country>();
+            while (rset.next())
+            {
+                String Region = rset.getString("region");
+                int Population = rset.getInt("total_population");
+                Country currentCountry = new Country();
+                currentCountry.Region = Region;
+                currentCountry.Population = Population;
+                popReport.add(currentCountry);
+            }
+            return popReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print region population report");
+            System.out.println(errorMessage);
+            return null;
+        }
+    }
+
+    /*country*/
+    public ArrayList<Country> countryPopulationReport(String country)
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT name, population "
+                            + "FROM country"
+                            + "WHERE name = '"+ country +"';";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<Country> popReport = new ArrayList<Country>();
+            while (rset.next())
+            {
+                String Country = rset.getString("country");
+                int Population = rset.getInt("total_population");
+                Country currentCountry = new Country();
+                currentCountry.Name = Country;
+                currentCountry.Population = Population;
+                popReport.add(currentCountry);
+            }
+            return popReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print country population report");
+            System.out.println(errorMessage);
+            return null;
+        }
+    }
+
+    /*district*/
+    public ArrayList<City> districtPopulationReport(String district)
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT District, sum(population) AS total_population "
+                            + "FROM city"
+                            + "WHERE district = '"+ district +"';";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> popReport = new ArrayList<City>();
+            while (rset.next())
+            {
+                String District = rset.getString("district");
+                int Population = rset.getInt("total_population");
+                City currentCity = new City();
+                currentCity.District = District;
+                currentCity.Population = Population;
+                popReport.add(currentCity);
+            }
+            return popReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print district population report");
+            System.out.println(errorMessage);
+            return null;
+        }
+    }
+
+    /*city*/
+    public ArrayList<City> cityPopulationReport(String city)
+    {
+        try
+        {
+            // Generate the SQL statement
+            Statement stmt = con.createStatement();
+            // Add SQL statement to a string
+            String strSelect =
+                    "SELECT name, population "
+                            + "FROM city"
+                            + "WHERE name = '"+ city +"';";
+            // Run SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract employee information
+            ArrayList<City> popReport = new ArrayList<City>();
+            while (rset.next())
+            {
+                String City = rset.getString("city");
+                int Population = rset.getInt("total_population");
+                City currentCity = new City();
+                currentCity.Name = City;
+                currentCity.Population = Population;
+                popReport.add(currentCity);
+            }
+            return popReport;
+        }
+        catch (Exception e)
+        {
+            StringBuilder errorMessage = new StringBuilder("Error: ");
+            errorMessage.append(e.getMessage());
+            errorMessage.append("Unable to print city population report");
+            System.out.println(errorMessage);
             return null;
         }
     }
