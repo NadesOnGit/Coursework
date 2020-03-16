@@ -22,21 +22,19 @@ public class QueryHandler {
      * Purpose: This establishes a connection to the database being used.
      * Parameters: filename - This is the name of the database that we are using.
      */
-    public QueryHandler(String location) {
+    public QueryHandler(String filename) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver.");
-            System.exit(-1);
         }
-
         int retries = 5;
         for(int i = 0; i < retries; i++){
             try {
                 //Establish a connection to the database. Username value
                 Thread.sleep(10000);
-                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                System.out.println("Successfully Connected.");
                 errorMessage = null;
                 break;
             } catch (SQLException e) {
@@ -46,9 +44,10 @@ public class QueryHandler {
                 errorMessage.append(" - Unable to connect with database\n");
             }
             catch(InterruptedException ie){
-                System.out.println("Thread interrupted? Should not happen.");
+                //System.out.println("Thread interrupted? Should not happen.");
             }
         }
+
     }
 
     /*
